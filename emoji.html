@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Image Emoji Typer</title>
+    <style>
+        .emoji {
+            width: 50px; /* Increased by 150% */
+            height: 50px; /* Increased by 150% */
+            vertical-align: middle;
+            image-rendering: pixelated; /* Nearest neighbor format */
+            transition: transform 0.3s ease-in-out; /* Smooth transition */
+        }
+        .emoji:hover {
+            position: absolute;
+            transform: scale(3.6); /* Scale to 150% (3.6x) */
+            image-rendering: pixelated; /* Nearest neighbor format */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            padding: 0% 35%; /* Reduce top and bottom padding by 35% */
+        }
+        .output-box, textarea {
+            width: 100%;
+            height: 60%; /* Each takes up 60% of the screen height */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            font-size: 1.5em; /* Increased by 150% */
+        }
+        .output-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            overflow-y: auto; /* Enable vertical scrollbar */
+        }
+        textarea {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Custom Image Emoji Typer</h2>
+        <textarea id="textInput" rows="10" cols="50"></textarea>
+        <div id="output" class="output-box"></div>
+    </div>
+
+    <script>
+        const emojiMap = {
+            "Happy": "Happy.png",
+            "Glad": "Happy.png",
+            "Happiness": "Happy.png",
+            "Hi": "Hi.png",
+            "Hello": "Hi.png",
+            "Sad": "Sad.png",
+            "Depressed": "Sad.png",
+            "Sadness": "Sad.png",
+            "Depression": "Sad.png",
+            "Upset": "Sad.png",
+            "Confused": "Confused.png",
+            "Confusing": "Confused.png",
+            "Confusion": "Confused.png",
+            "Angry": "Angry.png",
+            "Hates": "Angry.png",
+            "Mad": "Angry.png",
+            "Piss": "Angry.png",
+            "Pissed": "Angry.png",
+            "Furious": "Angry.png",
+            "Wealth": "Wealth.png",
+            "Wealthy": "Wealth.png",
+            "Monopoly": "Wealth.png",
+            "Rich": "Wealth.png",
+            "Tycoon": "Wealth.png",
+            "Wealthy": "Wealth.png",
+            "Male": "Male.png",
+            "Guy": "Male.png",
+            "Dude": "Male.png",
+            "He": "Male.png",
+            "Boy": "Male.png",
+            "Men": "Male.png",
+            "Man": "Male.png",
+            "Him": "Male.png",
+            "His": "Male.png",
+            "Mr": "Male.png",
+            "Female": "Female.png",
+            "Gal": "Female.png",
+            "Dudette": "Female.png",
+            "She": "Female.png",
+            "Girl": "Female.png",
+            "Woman": "Female.png",
+            "Mrs": "Female.png",
+            "Her": "Female.png",
+            "Money": "Money.png",
+            "Cash": "Money.png",
+            "Moolah": "Money.png",
+            "Currency": "Money.png",
+            "Pokemon": "Pokemon.png",
+            "Pokeball": "Pokemon.png",
+            "Animal": "Animal.png",
+            "Creature": "Animal.png",
+            "Pet": "Animal.png",
+            "Dog": "Dog.png",
+            "Dogs": "Dog.png",
+            "Canine": "Dog.png",
+            "Cat": "Cat.png",
+            "Cats": "Cat.png",
+            "Feline": "Cat.png",
+            "Hamburger": "Burger.png",
+            "Cheeseburger": "Burger.png",
+            "Burger": "Burger.png",
+            "Meat": "Burger.png",
+            "Food": "Burger.png",
+            "Muslim": "Muslim.png",
+            "Christian": "Christian.png",
+            "Plane": "Plane.png",
+            "Aircraft": "Plane.png",
+            "Airplane": "Plane.png",
+            "Aeroplane": "Plane.png",
+            "Swan": "Swan.png",
+            "Arcade": "Arcade.png",
+            "Joystick": "Arcade.png",
+            "Gearshift": "Arcade.png",
+            "Tower": "Tower.png",
+            "Structure": "Tower.png",
+            "Rook": "Tower.png",
+            "Game": "Game.png",
+            "Tic Tac Toe": "Game.png",
+            "Knots and Crosses": "Game.png"
+        };
+
+        document.getElementById('textInput').addEventListener('input', function() {
+            let text = this.value;
+            Object.keys(emojiMap).forEach(word => {
+                const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                text = text.replace(regex, `<img src="${emojiMap[word]}" alt="${word}" class="emoji">`);
+            });
+            document.getElementById('output').innerHTML = text;
+        });
+    </script>
+</body>
+</html>
